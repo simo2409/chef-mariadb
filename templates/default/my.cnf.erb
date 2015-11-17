@@ -1,0 +1,28 @@
+[mysqld]
+datadir=/var/lib/mysql
+socket=<%= node["mariadb"]["conf"]["socket"] %>
+user=mysql
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+
+query_cache_size = 40M # In bytes
+query_cache_type = 1 # Query all selects
+query_cache_limit = 4M # Queries larger than this (4M) will be not cached
+innodb_buffer_pool_size = 20M # In bytes
+thread_cache_size = 4
+sort_buffer_size = 32M
+read_rnd_buffer_size = 8M
+tmp_table_size = 32M
+max_heap_table_size = 32M
+
+max_connections = 15
+
+slow_query_log=1
+slow_query_log_file=<%= node["mariadb"]["conf"]["slow_query_log"] %>
+long_query_time=1
+
+log-error=<%= node["mariadb"]["conf"]["error_log"] %>
+pid-file=<%= node["mariadb"]["conf"]["pid_file"] %>
+
+[mysqld_safe]
+
